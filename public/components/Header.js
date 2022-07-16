@@ -5,9 +5,9 @@ const Header = ({nombre, apellido, rol}) => {
 
     const router = useRouter()
 
-    nombre = 'Alejandro'
-    apellido = 'Llanganate'
-    rol = 'ADMINISTRADOR'
+    nombre = 'Ivonne'
+    apellido = 'Venegas'
+    rol = 'AUDITOR'
     return (
         <Box backgroundColor="#1D2226" shadow="md">
             <Flex>
