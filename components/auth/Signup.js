@@ -34,10 +34,10 @@ const Signup = () => {
                     <Input name="email" onChange={formikLogin.handleChange}  placeholder='Ingresa tu correo electrónico' />
                 </FormControl>
                 <FormControl width="100%" id="passwordUsuario" >
-                    <Input name="password" onChange={formikLogin.handleChange}  placeholder='Ingresa una contraseña' />
+                    <Input type="password" name="password" onChange={formikLogin.handleChange}  placeholder='Ingresa una contraseña' />
                 </FormControl>
                 <FormControl width="100%" id="passwordRepeatUsuario" >
-                    <Input name="passwordRepeat" onChange={formikLogin.handleChange}  placeholder='Ingresa nuevamente la contraseña' />
+                    <Input type="password" name="passwordRepeat" onChange={formikLogin.handleChange}  placeholder='Ingresa nuevamente la contraseña' />
                 </FormControl>
                 <Button type="submit" width="100%" colorScheme="teal" >
                     Crear una cuenta
