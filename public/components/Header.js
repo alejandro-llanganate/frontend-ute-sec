@@ -9,7 +9,7 @@ const Header = ({nombre, apellido, rol}) => {
     apellido = 'Venegas'
     rol = 'AUDITOR'
     return (
-        <Box backgroundColor="#1D2226" shadow="md">
+        <Box height="8vh" backgroundColor="#1D2226" shadow="md">
             <Flex>
                 <Box ml="80px" p='4' color='white'>
                     <VStack>
