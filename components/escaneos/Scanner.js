@@ -12,7 +12,7 @@ const Scanner = () => {
             </HStack>
             <Flex mt="5%"  justifyContent="center">
                 <VStack>
-                    <Box shadow="md" background="white" p="50px" borderWidth="2px" borderRadius="lg" >
+                    <Box shadow="md" background="white" p="100px" borderWidth="1px" borderRadius="lg" >
                         <VStack spacing="20px" >
                             <Heading>
                                 <HStack>

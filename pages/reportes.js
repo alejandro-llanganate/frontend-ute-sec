@@ -1,18 +1,18 @@
 import { Flex, HStack } from "@chakra-ui/react";
-import Scanner from "../components/escaneos/Scanner";
+import Report from "../components/reportes/Report";
 import Header from "../public/components/Header";
 import NavBar from "../public/components/NavBar";
 
-const Home = () => {
+const Reportes = () => {
     return (
         <div>
             <Header />
             <Flex>
-                <NavBar active="escaneos" />
-                <Scanner />
+                <NavBar active="reportes" />
+                <Report />
             </Flex>
         </div>
     )
 }
 
-export default Home;
+export default Reportes;
