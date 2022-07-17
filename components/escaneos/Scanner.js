@@ -1,9 +1,13 @@
 import { Box, Button, Flex, Heading, HStack, Icon, Input, InputGroup, InputLeftElement, Text, VStack } from "@chakra-ui/react"
 import { MdScanner } from "react-icons/md"
 import { LinkIcon } from '@chakra-ui/icons'
+import { useRouter } from "next/router"
 
 
 const Scanner = () => {
+
+    const router = useRouter();
+
     return (
         <Box width="100%" >
             <HStack color="#A5A5A5" p="40px">
@@ -30,7 +34,11 @@ const Scanner = () => {
                                         />
                                         <Input width="500px" type='text' placeholder='https://www.example.com' />
                                     </InputGroup>
-                                    <Button colorScheme="teal">
+                                    <Button colorScheme="teal" onClick={
+                                        () => {
+                                            router.push('scannerWebPage')
+                                        }
+                                    }>
                                         Escanear
                                     </Button>
                                 </VStack>

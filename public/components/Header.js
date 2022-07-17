@@ -19,7 +19,7 @@ const Header = ({nombre, apellido, rol}) => {
                 <Spacer />
                 <Box p='4'>
                     <Select borderColor="#313B43" color="white" backgroundColor="#313B43" placeholder={`${nombre} ${apellido} (${rol})`}>
-                        <option onClick={
+                        <option  background-color="black" onClick={
                             () => {
                                 router.push('/login')
                             }
