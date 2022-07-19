@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, HStack, Icon, Input, InputGroup, InputLeftElement, Text, VStack } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, HStack, Icon, Input, InputGroup, InputLeftElement, Text, useDisclosure, VStack } from "@chakra-ui/react"
 import { MdDelete, MdRemoveRedEye, MdScanner } from "react-icons/md"
 import { LinkIcon } from '@chakra-ui/icons'
 import {
@@ -12,8 +12,12 @@ import {
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react'
+import ReportModal from "./ReportModal"
 
 const Report = () => {
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <Box width="100%" >
             <HStack color="#A5A5A5" p="40px">
@@ -46,13 +50,13 @@ const Report = () => {
                                     </Td>
                                     <Td>
                                         <HStack>
-                                            <Button backgroundColor="#3182CE" color="white">
+                                            <Button onClick={onOpen} backgroundColor="#3182CE" color="white">
                                                 <HStack>
                                                     <Icon color="white" as={MdRemoveRedEye} />
                                                     <Text>Ver</Text>
                                                 </HStack>
                                             </Button>
-                                            <Button backgroundColor="#CE3157">
+                                            <Button  backgroundColor="#CE3157">
                                                 <Icon color="white" as={MdDelete} />
                                             </Button>
                                         </HStack>
@@ -64,7 +68,10 @@ const Report = () => {
                     </TableContainer>
                 </VStack>
             </Flex>
+            <ReportModal isOpen={isOpen} onClose={onClose} />
+
         </Box>
+        
     )
 }
 

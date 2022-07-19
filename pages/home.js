@@ -1,4 +1,5 @@
 import { Flex, HStack } from "@chakra-ui/react";
+import Result from "../components/escaneos/Result";
 import Scanner from "../components/escaneos/Scanner";
 import Header from "../public/components/Header";
 import NavBar from "../public/components/NavBar";
@@ -9,7 +10,8 @@ const Home = () => {
             <Header />
             <Flex>
                 <NavBar active="escaneos" />
-                <Scanner />
+                {/* <Scanner /> */}
+                <Result />
             </Flex>
         </div>
     )
