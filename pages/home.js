@@ -10,8 +10,7 @@ const Home = () => {
             <Header />
             <Flex>
                 <NavBar active="escaneos" />
-                {/* <Scanner /> */}
-                <Result />
+                <Scanner />
             </Flex>
         </div>
     )
