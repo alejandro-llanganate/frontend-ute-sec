@@ -1,9 +1,9 @@
 import { Flex } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import Scanner from "../components/escaneos/Scanner";
 import Header from "../public/components/Header";
 import NavBar from "../public/components/NavBar";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Cookies from 'js-cookie'
 
 
