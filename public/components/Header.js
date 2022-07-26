@@ -1,13 +1,15 @@
-import { Box, Flex, Heading, Select, Spacer, VStack } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, HStack, Select, Spacer, Text, VStack } from "@chakra-ui/react"
 import { useRouter } from "next/router"
+import Cookies from 'js-cookie'
 
-const Header = ({nombre, apellido, rol}) => {
+const Header = ({ user }) => {
 
     const router = useRouter()
+    const cerrarSesion = (e) => {
+        Cookies.remove("token")
+        router.push("login")
+    }
 
-    nombre = 'Ivonne'
-    apellido = 'Venegas'
-    rol = 'AUDITOR'
     return (
         <Box height="8vh" backgroundColor="#1D2226" shadow="md">
             <Flex>
@@ -17,15 +19,14 @@ const Header = ({nombre, apellido, rol}) => {
                     </VStack>
                 </Box>
                 <Spacer />
-                <Box p='4'>
-                    <Select borderColor="#313B43" color="white" backgroundColor="#313B43" placeholder={`${nombre} ${apellido} (${rol})`}>
-                        <option  background-color="black" onClick={
-                            () => {
-                                router.push('/login')
-                            }
-                        } value='option1'>Cerrar sesión</option>
-                    </Select>
-                </Box>
+                <HStack spacing={5}>
+                    <Text p={3} borderRadius={2} borderColor="#313B43" color="white" backgroundColor="#313B43">{`${user.name} ${user.lastname} (${user.rol})`}</Text>
+                    <Button onClick={cerrarSesion} color="white" colorScheme="red">
+                        Cerrar sesión
+                    </Button>
+                    <Box></Box>
+                </HStack>
+
             </Flex>
         </Box>
     )

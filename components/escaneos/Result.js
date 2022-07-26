@@ -1,7 +1,7 @@
 import { Box, Button, HStack, Icon, Input, Table, TableContainer, Tbody, Td, Text, Textarea, Th, Thead, Tr, VStack } from "@chakra-ui/react"
 import { MdSave } from "react-icons/md"
 
-const Result = () => {
+const Result = ({ rol }) => {
     return (
         <Box shadow="md" p="20px" borderWidth="1px">
             <VStack spacing="20px">
@@ -9,10 +9,15 @@ const Result = () => {
                     <Table variant='simple'>
                         <Thead>
                             <Tr>
-                                <Th>Tipificación de riesgo</Th>
+                                <Th>Tipificación</Th>
                                 <Th>Riesgo evaluado</Th>
                                 <Th>Criticidad</Th>
-                                <Th>Observaciones</Th>
+                                {
+                                    rol !== 'USUARIO' ?
+                                        <Th>Observaciones</Th>
+                                        :
+                                        <div></div>
+                                }
                             </Tr>
                         </Thead>
                         <Tbody>
@@ -32,11 +37,14 @@ const Result = () => {
                                         Alto
                                     </Text>
                                 </Td>
-                                <Td>
-                                    <Textarea placeholder="Ingresar sus observaciones">
-
-                                    </Textarea>
-                                </Td>
+                                {
+                                    rol !== 'USUARIO' ?
+                                        <Td>
+                                            <Textarea placeholder="Ingresar sus observaciones">
+                                            </Textarea>
+                                        </Td> :
+                                        ""
+                                }
                             </Tr>
                             <Tr>
                                 <Td>
@@ -54,11 +62,14 @@ const Result = () => {
                                         Alto
                                     </Text>
                                 </Td>
-                                <Td>
-                                    <Textarea placeholder="Ingresar sus observaciones">
-
-                                    </Textarea>
-                                </Td>
+                                {
+                                    rol !== 'USUARIO' ?
+                                        <Td>
+                                            <Textarea placeholder="Ingresar sus observaciones">
+                                            </Textarea>
+                                        </Td> :
+                                        ""
+                                }
                             </Tr>
                             <Tr>
                                 <Td>
@@ -76,11 +87,14 @@ const Result = () => {
                                         Alto
                                     </Text>
                                 </Td>
-                                <Td>
-                                    <Textarea placeholder="Ingresar sus observaciones">
-
-                                    </Textarea>
-                                </Td>
+                                {
+                                    rol !== 'USUARIO' ?
+                                        <Td>
+                                            <Textarea placeholder="Ingresar sus observaciones">
+                                            </Textarea>
+                                        </Td> :
+                                        ""
+                                }
                             </Tr>
                             <Tr>
                                 <Td>
@@ -98,11 +112,14 @@ const Result = () => {
                                         Alto
                                     </Text>
                                 </Td>
-                                <Td>
-                                    <Textarea placeholder="Ingresar sus observaciones">
-
-                                    </Textarea>
-                                </Td>
+                                {
+                                    rol !== 'USUARIO' ?
+                                        <Td>
+                                            <Textarea placeholder="Ingresar sus observaciones">
+                                            </Textarea>
+                                        </Td> :
+                                        ""
+                                }
                             </Tr>
                             <Tr>
                                 <Td>
@@ -120,17 +137,20 @@ const Result = () => {
                                         Alto
                                     </Text>
                                 </Td>
-                                <Td>
-                                    <Textarea placeholder="Ingresar sus observaciones">
-
-                                    </Textarea>
-                                </Td>
+                                {
+                                    rol !== 'USUARIO' ?
+                                        <Td>
+                                            <Textarea placeholder="Ingresar sus observaciones">
+                                            </Textarea>
+                                        </Td> :
+                                        ""
+                                }
                             </Tr>
 
                         </Tbody>
                     </Table>
                 </TableContainer>
-                <Button colorScheme="blue">
+                <Button display={rol === 'USUARIO' ? 'none' : 'block'} colorScheme="blue">
                     <HStack spacing="15px">
                         <Icon as={MdSave} />
                         <Text>Guardar</Text>

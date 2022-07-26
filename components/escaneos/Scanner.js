@@ -1,12 +1,35 @@
-import { Box, Button, Flex, Heading, HStack, Icon, Input, InputGroup, InputLeftElement, Text, VStack } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, HStack, Icon, Input, InputGroup, InputLeftElement, Text, useDisclosure, VStack } from "@chakra-ui/react"
 import { MdScanner } from "react-icons/md"
 import { LinkIcon } from '@chakra-ui/icons'
 import { useRouter } from "next/router"
+import ResultModal from "./ResultModal"
+import * as Yup from 'yup';
+import { useFormik } from "formik"
 
 
-const Scanner = () => {
+const Scanner = ({rol}) => {
 
     const router = useRouter();
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const initialFieldValues = '';
+
+    const ScannerSchema = Yup.object().shape(
+        {
+            url: Yup.string()
+                .required('Campo obligatorio'),
+        }
+    )
+
+    const formikScanner = useFormik({
+        initialValues: {
+            url: initialFieldValues,
+        },
+        validationSchema: ScannerSchema,
+        onSubmit: (credenciales) => {
+            onOpen();
+        }
+    })
 
     return (
         <Box width="100%" >
@@ -14,8 +37,9 @@ const Scanner = () => {
                 <Icon as={MdScanner} mr="4px" />
                 <Text>Escaneos /</Text>
             </HStack>
-            <Flex mt="5%"  justifyContent="center">
+            <Flex mt="5%" justifyContent="center">
                 <VStack>
+                    <ResultModal rol={rol} isOpen={isOpen} onClose={onClose} />
                     <Box shadow="md" background="white" p="100px" borderWidth="1px" borderRadius="lg" >
                         <VStack spacing="20px" >
                             <Heading>
@@ -25,20 +49,17 @@ const Scanner = () => {
                                 </HStack>
                             </Heading>
                             <Text>Ingresa la dirección web o URL de la página a escanear.</Text>
-                            <form  >
+                            <form onSubmit={formikScanner.handleSubmit}>
                                 <VStack spacing="30px">
-                                    <InputGroup width="100%">
+                                    <InputGroup width="100%" isInvalid={formikScanner.errors.url && formikScanner.touched.url}>
                                         <InputLeftElement
                                             pointerEvents='none'
+                                            
                                             children={<LinkIcon color='gray.300' />}
                                         />
-                                        <Input width="500px" type='text' placeholder='https://www.example.com' />
+                                        <Input name="url" onChange={formikScanner.handleChange} required={true} width="500px" type='text' placeholder='https://www.example.com' />
                                     </InputGroup>
-                                    <Button colorScheme="teal" onClick={
-                                        () => {
-                                            router.push('scannerWebPage')
-                                        }
-                                    }>
+                                    <Button type="submit" colorScheme="teal">
                                         Escanear
                                     </Button>
                                 </VStack>
@@ -46,7 +67,6 @@ const Scanner = () => {
                         </VStack>
                     </Box>
                 </VStack>
-
             </Flex>
         </Box>
     )
