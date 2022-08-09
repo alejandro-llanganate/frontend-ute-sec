@@ -38,7 +38,7 @@ const Home = () => {
                 <Header user={user}/>
                 <Flex>
                     <NavBar rol={user.rol} active="escaneos" />
-                    <Scanner rol={user.rol} />
+                    <Scanner user={user} />
                 </Flex>
             </div>
         )

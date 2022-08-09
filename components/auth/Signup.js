@@ -49,6 +49,7 @@ const Signup = () => {
                 lastname: values.lastname,
                 email: values.email,
                 password: values.password,
+                rol: 'USUARIO',
             };
             axios
                 .post(

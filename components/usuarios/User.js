@@ -33,7 +33,6 @@ const User = () => {
                 );
                 const respUsers = await resp.json();
                 setUsuarios(respUsers);
-                console.log('respUsers', respUsers);
             }
             )();
         }

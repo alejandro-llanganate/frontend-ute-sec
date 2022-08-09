@@ -5,11 +5,15 @@ import { useRouter } from "next/router"
 import ResultModal from "./ResultModal"
 import * as Yup from 'yup';
 import { useFormik } from "formik"
+import { useState } from "react"
+import axios from 'axios';
 
 
-const Scanner = ({rol}) => {
+const Scanner = ({user}) => {
 
     const router = useRouter();
+    const [urlInfo, setUrlInfo] = useState("");
+    const [scan, setScan] = useState({});
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialFieldValues = '';
@@ -17,7 +21,8 @@ const Scanner = ({rol}) => {
     const ScannerSchema = Yup.object().shape(
         {
             url: Yup.string()
-                .required('Campo obligatorio'),
+                .required('Campo obligatorio')
+                .url('URL no válida'),
         }
     )
 
@@ -26,8 +31,25 @@ const Scanner = ({rol}) => {
             url: initialFieldValues,
         },
         validationSchema: ScannerSchema,
-        onSubmit: (credenciales) => {
-            onOpen();
+        onSubmit: (content) => {
+            setUrlInfo(content.url);
+           axios
+                .post(
+                    "http://localhost:3000/api/scan/scanWebPage",
+                    content,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }
+                )
+                .then(
+                    res => {
+                        setScan(res.data);
+                        onOpen();
+                    }
+                )
+         
         }
     })
 
@@ -39,7 +61,7 @@ const Scanner = ({rol}) => {
             </HStack>
             <Flex mt="5%" justifyContent="center">
                 <VStack>
-                    <ResultModal rol={rol} isOpen={isOpen} onClose={onClose} />
+                    <ResultModal scan={scan} url={urlInfo} userId={user.id}  rol={user.rol} isOpen={isOpen} onClose={onClose} />
                     <Box shadow="md" background="white" p="100px" borderWidth="1px" borderRadius="lg" >
                         <VStack spacing="20px" >
                             <Heading>
@@ -59,6 +81,9 @@ const Scanner = ({rol}) => {
                                         />
                                         <Input name="url" onChange={formikScanner.handleChange} required={true} width="500px" type='text' placeholder='https://www.example.com' />
                                     </InputGroup>
+                                    <Text fontSize="xs" color="red.500">
+                                        {formikScanner.errors.url}
+                                    </Text>
                                     <Button type="submit" colorScheme="teal">
                                         Escanear
                                     </Button>

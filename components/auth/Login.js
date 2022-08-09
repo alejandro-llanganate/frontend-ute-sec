@@ -33,7 +33,6 @@ const Login = () => {
         },
         validationSchema: LoginSchema,
         onSubmit: (credenciales) => {
-            console.log('credenciales', credenciales)
             axios
                 .post("http://localhost:3000/auth/login", credenciales, {
                     headers: {
@@ -50,7 +49,7 @@ const Login = () => {
                             status: 'success',
                             duration: 2000,
                         });
-                        Cookies.set('token', resp.data.access_token, { expires: 1 })
+                        Cookies.set('token', resp.data.access_token, { expires: 10 })
                         router.push('./home');
                     } else {
                         setShowNoAuthorized(true);
